@@ -3,17 +3,20 @@ let numRows = 0;
 let numCols = 0;
 let colorSelected; 
 
-let defaultCol = document.createElement("td");
-defaultCol.setAttribute("id", "col");
-defaultCol.setAttribute("style", "backgroundColor: white;");
-
-let defaultRow = document.createElement("tr");
-defaultRow.setAttribute("id", "row");
-
 // Add a row
 function addR() {
-    alert("Clicked Add Row"); // Replace this line with your code.
-
+    if (!numCols){
+        numCols++;
+    }
+    let newRow = document.createElement("tr");
+    newRow.setAttribute("id", "row");
+    for (let counter = 0; counter < numCols; counter++){
+        let newCol = document.createElement("td");
+        newCol.setAttribute("id","col");
+        newCol.setAttribute("style", "backgroundColor: white;");
+        newRow.appendChild(newCol);
+    }
+    document.getElementById("grid").appendChild(newRow);
 }
 
 // Add a column
