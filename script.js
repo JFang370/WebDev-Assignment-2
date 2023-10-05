@@ -3,9 +3,17 @@ let numRows = 0;
 let numCols = 0;
 let colorSelected; 
 
+let defaultCol = document.createElement("td");
+defaultCol.setAttribute("id", "col");
+defaultCol.setAttribute("style", "backgroundColor: white;");
+
+let defaultRow = document.createElement("tr");
+defaultRow.setAttribute("id", "row");
+
 // Add a row
 function addR() {
     alert("Clicked Add Row"); // Replace this line with your code.
+
 }
 
 // Add a column
