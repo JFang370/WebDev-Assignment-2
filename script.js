@@ -8,6 +8,7 @@ function addR() {
     if (!numCols){
         numCols++;
     }
+    numRows++;
     let newRow = document.createElement("tr");
     newRow.setAttribute("id", "row");
     for (let counter = 0; counter < numCols; counter++){
@@ -21,7 +22,18 @@ function addR() {
 
 // Add a column
 function addC() {
-    alert("Clicked Add Col"); // Replace this line with your code.
+    if (!numRows){
+        addR();
+    }
+    else{
+        let rowList = document.querySelectorAll("#row");
+        for (let index = 0; index < rowList.length; index++){
+            let newCol = document.createElement("td");
+            newCol.setAttribute("id", "col");
+            newCol.setAttribute("style", "backgroundColor: white;");
+            rowList[index].appendChild(newCol);
+        }
+    }
 }
 
 // Remove a row
