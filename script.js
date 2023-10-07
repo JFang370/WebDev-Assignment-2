@@ -14,7 +14,7 @@ function addR() {
     for (let counter = 0; counter < numCols; counter++){
         let newCol = document.createElement("td");
         newCol.setAttribute("id","col");
-        newCol.setAttribute("style", "backgroundColor: white;");
+        newCol.style.backgroundColor = "white";
         newRow.appendChild(newCol);
     }
     document.getElementById("grid").appendChild(newRow);
@@ -29,8 +29,8 @@ function addC() {
         let rowList = document.querySelectorAll("#row");
         for (let index = 0; index < rowList.length; index++){
             let newCol = document.createElement("td");
+            newCol.style.backgroundColor = "white";
             newCol.setAttribute("id", "col");
-            newCol.setAttribute("style", "backgroundColor: white;");
             rowList[index].appendChild(newCol);
         }
     }
@@ -59,7 +59,10 @@ function fillU(){
 
 // Fill all cells
 function fillAll(){
-    alert("Clicked Fill All"); // Replace this line with your code.
+    let cols = document.querySelectorAll("#col");
+    for (let index = 0; index < cols.length; index++){
+        cols[index].style.backgroundColor = colorSelected;
+    }
 }
 
 // Clear all cells
