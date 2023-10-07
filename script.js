@@ -67,5 +67,7 @@ function fillAll(){
 
 // Clear all cells
 function clearAll(){
-    alert("Clicked Clear All"); // Replace this line with your code.
-}
+    let cols = document.querySelectorAll("#col");
+    for (let index = 0; index < cols.length; index++){
+        cols[index].style.backgroundColor = "white";
+    }}
