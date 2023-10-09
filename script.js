@@ -3,6 +3,8 @@ let numRows = 0;
 let numCols = 0;
 let colorSelected; 
 
+let colorSingle = false;
+
 // Add a row
 function addR() {
     if (!numCols){
@@ -15,6 +17,7 @@ function addR() {
         let newCol = document.createElement("td");
         newCol.setAttribute("id","col");
         newCol.style.backgroundColor = "white";
+        newCol.addEventListener("click", fill);
         newRow.appendChild(newCol);
     }
     document.getElementById("grid").appendChild(newRow);
@@ -26,24 +29,48 @@ function addC() {
         addR();
     }
     else{
+        numCols++;
         let rowList = document.querySelectorAll("#row");
         for (let index = 0; index < rowList.length; index++){
             let newCol = document.createElement("td");
-            newCol.style.backgroundColor = "white";
             newCol.setAttribute("id", "col");
+            newCol.style.backgroundColor = "white";
+            newCol.addEventListener("click", fill);
             rowList[index].appendChild(newCol);
         }
     }
 }
 
+function resetGrid(){
+    while(numRows){
+        document.getElementById("grid").removeChild(document.getElementById("grid").lastChild);
+        numRows--;
+    }
+}
+
 // Remove a row
 function removeR() {
-    alert("Clicked Remove Row"); // Replace this line with your code.
+    if (numRows){
+        document.getElementById("grid").removeChild(document.getElementById("grid").lastChild);
+        numRows--;
+        if (!numRows){
+            numCols = 0;
+        }
+    }
 }
 
 // Remove a column
 function removeC() {
-    alert("Clicked Remove Col"); // Replace this line with your code.
+    if (numCols){
+        let rows = document.querySelectorAll("#row");
+        numCols--;
+        for (let index = 0; index < rows.length; index++){
+            rows[index].removeChild(rows[index].lastChild);
+        }
+        if (!numCols){
+            resetGrid();
+        }
+    }
 }
 
 // Set global variable for selected color
@@ -52,9 +79,29 @@ function selectColor(){
     console.log(colorSelected);
 }
 
+function fill(){
+    if (colorSingle){
+        this.style.backgroundColor = colorSelected;
+    }
+}
+
+function fillSingle(){
+    if (!colorSingle){
+        colorSingle = true;
+    }
+    else if (colorSingle){
+        colorSingle = false;
+    }
+}
+
 // Fill all uncolored cells
 function fillU(){
-    alert("Clicked Fill All Uncolored"); // Replace this line with your code.
+    let cols = document.querySelectorAll("#col");
+    for (let index = 0; index < cols.length; index++){
+        if (cols[index].style.backgroundColor == "white"){
+            cols[index].style.backgroundColor = colorSelected;
+        }
+    }
 }
 
 // Fill all cells
@@ -70,4 +117,5 @@ function clearAll(){
     let cols = document.querySelectorAll("#col");
     for (let index = 0; index < cols.length; index++){
         cols[index].style.backgroundColor = "white";
-    }}
+    }
+}
