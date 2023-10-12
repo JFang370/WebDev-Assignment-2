@@ -1,6 +1,6 @@
 # grid-code
 
-This repository is the code for our zoo webpage
+This repository is the code for our grid webpage
 
 ### Live Link
 https://jfang370.github.io/WebDev-Assignment-2/
